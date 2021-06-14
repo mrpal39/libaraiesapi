@@ -6,6 +6,7 @@ django-ajax==0.3.0
 django-cors-headers==3.7.0
 django-dotenv==1.4.2
 django-environ==0.4.5
+gunicorn==20.1.0
 idna==2.10
 memcache==0.5.1
 python-dotenv==0.17.1

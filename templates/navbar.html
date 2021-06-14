@@ -1,0 +1,35 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="modal-header m-lg-auto">
+    <ul class="nav nav-pills nav-fill">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'index' %}"
+          >home</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'search' %}">Platfrom</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'github' %}">Github</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'detail_view' %}">Library</a>
+      </li>      <li class="nav-item">
+        <a class="nav-link" href="{% url 'github' %}">Git</a>
+      </li>
+      <li class="nav-item">
+        <form class="d-flex" action="/search" method="get">
+          <input
+            class="form-control me-2"
+            name="q"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </li>
+    </ul>
+  </div>
+</nav>

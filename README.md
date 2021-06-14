@@ -1,0 +1,2 @@
+# devfile
+# ajax-django-api

@@ -1,0 +1,24 @@
+{%extends "base.html"%} 
+
+
+{% block content %} 
+
+
+
+<div class="container mt-5 w-50" id='formid'>
+    <form id="signupForm" method="POST">
+        {% csrf_token %} {{ form }}
+        <input type="submit" name="signupSubmit" class="btn btn-success btn-lg" />
+    </form>
+</div>
+
+
+{% endblock %} 
+
+{% block javascript %}
+
+<script>
+    {% include 'java/sign.js'%}
+</script>
+
+{% endblock javascript %}

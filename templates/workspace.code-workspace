@@ -1,0 +1,31 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"name": "devfile @ 146c675",
+			"uri": "gitlens://146c675/home/rudi/dev/libapi/devfile?{\"path\":\"/home/rudi/dev/libapi/devfile\",\"ref\":\"146c67562f5759a3a4ea5a9b12c1e305fe227141\",\"repoPath\":\"/home/rudi/dev/libapi/devfile\"}"
+		}
+	],
+	"settings": {
+		"window.autoDetectColorScheme": true,
+		"window.closeWhenEmpty": true,
+		"screencastMode.onlyKeyboardShortcuts": true
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Python: Django",
+				"type": "python",
+				"request": "launch",
+				"program": "${workspaceFolder}/manage.py",
+				"args": [
+					"runserver"
+				],
+				"django": true
+			}
+		]
+	}
+}

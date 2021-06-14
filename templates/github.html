@@ -1,0 +1,45 @@
+{% include 'base.html' %} {% block content %}
+<h2>dependents</h2>
+<form action="/github" method="get">
+<input type="text" name="q" id="q">
+<button class="s" type="submit">submit</button>
+</form>
+
+{{dependents}}
+<!-- {% for a in dependents %}
+{{a.name}}<br>
+{% endfor %} -->
+
+
+<!-- <div class="row">
+    {{respons.full_name}}
+
+
+    {{respons.description}}
+
+    {{respons.fork}}
+    <span>date of created:{{respons.created_at}}</span>
+
+    <span> last update
+        {{respons.updated_at}}</span>
+
+    {{respons}}
+    {{respons.homepage}}
+    {{respons.size}}
+    {{respons.stargazers_count}}
+    {{respons.language}}
+    {{respons.has_issues}}
+    {{respons.default_branch}}
+    {{respons.subscribers_count}}
+
+    <h2>mia</h2>
+    <br>
+    {{respons.dependencies}}
+    {{respons.project_name}}
+</div>
+<div class="row text-center col-4">
+    {% for a in project %}
+    {{a.name}}<br>
+    {% endfor %}
+</div> -->
+{% endblock %}

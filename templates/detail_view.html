@@ -1,0 +1,77 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<h1>deatil views</h1>
+
+
+
+<!-- main contetn  body pary-->
+<div class="jumbotron">
+  <div class="mb-lg-n3 text-center">
+    <h1 class="display-3">{{d.name}}</h1>
+    <span>{{d.latest_release_number}}</span>
+    <p class="lead">{{d.rank}} {{d.platform}} {{d.language}}</p>
+    keywords{{d.keywords}}
+    <span>Depdent{{d.dependent_repos_count}}</span>
+
+    <hr class="my-2" />
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="{{d.package_manager_url}}" role="button"><i class="fa fa-download"
+          aria-hidden="true">downaload</i></a>
+      <a class="btn btn-primary btn-lg" href="{{d.repository_url}}" role="button"><i class="fa fa-git-square"
+          aria-hidden="true">github</i></a>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <h1>dependents</h1>
+
+    {% for HEY in dependents %}
+{{HEY}}
+    <!-- {{HEY.name}}
+    {{HEY.stars}}
+    {{HEY.forks}} -->
+
+
+    {% endfor %}
+
+  </div>
+  <div class="col">
+    <h1>repo</h1>
+    <div class="row">
+
+      {{repo}}
+
+    </div>
+  </div>
+  <div class="col">
+    <h1>cont</h1>
+    {% for contr in cont%}
+    <h1>{{contr.name}}</h1>
+    <span>{{contr.github_id}}</span>
+    <span>username:{{contr.login}}</span>
+    <span>{{contr.user_type}}</span>
+    <span>{{contr.created_at}}</span>
+    <span>{{contr.company}}</span>
+    <span>blog:{{contr.blog}}</span>
+    <span>location:{{contr.location}}</span>
+    <span>{{contr.email}}</span>
+
+    <span>{{contr.bio}}</span>
+    <span>{{contr.uuid}}</span>
+    <span>{{contr.host_type}}</span>
+
+    {% endfor%}
+  </div>
+  <div class="col">
+    <h1>rank</h1>
+    {{rank.basic_info_present}}<br />
+    {{rank.repository_present}}<br />
+    {{rank.readme_present}} <br />{{rank.license_present}}<br />
+    {{rank.dependent_repositories}}<br />
+    {{rank.stars}} <br />{{rank.contributors}} {{rank.subscribers}}<br />
+    {{rank.all_prereleases}}<br />
+    {{rank.any_outdated_dependencies}}<br />
+  </div>
+  {% endblock %}
+</div>

@@ -1,0 +1,67 @@
+{% extends "base.html"%} {%block content%}
+<div class="flatpages-flatpage">
+  <center>
+    <h1>Platform</h1>
+  </center>
+</div>
+<!-- {{conme}} -->
+<div class="row">
+  {% for a in conme%}
+
+
+  <div class="jumbotron justify-content-lg-center col-lg-3">
+    <form action="/" method="get">
+
+      <a class="likebutton btn-lg" id="like-IS" href="/detail/?platform={{a.platform}}&name={{a.name}}" name="GG"
+        data-catid="{{ a.name }}">{{a.name}}
+      </a>
+    </form>
+    <span>{{a.platform}}</span>
+
+    <span>{{a.language}}</span>
+    <span>{{a.dependent_repos_count}} </span>
+    <mute>{{a.dependents_count}} </mute>
+    <div class=".overflow-auto">{{a.description}}</div>
+
+    <!-- <div class="overflow-hidden"></div> -->
+    <h3>{{a.forks}}</h3>
+    <div class="group">
+      <div class=".overflow-auto">{{a.keywords}}</div>
+
+      <!-- <h5></h5> -->
+    </div>
+    <button class="alert-info">
+      <a href="{{a.latest_download_url}}">Download</a>
+    </button>
+    <button class="alert-info">
+      <a href="{{a.homepage}}">Homepage</a>
+    </button>
+  </div>
+  <br />
+
+  {% endfor%}
+</div>
+
+<!-- 
+<form
+  class="form-group jumbotron"
+  id="search_form"
+  action="/search"
+  method="get"
+>
+  <input type="text" name="q" id="q_value" />
+  <select class="btn btn-group-toggle" name="sort" id="short">
+    <option value="rank">rank</option>
+    <option value="stars">stars</option>
+    <option value="dependents_count">dependents_count</option>
+    <option value="dependent_repos_count">dependent_repos_count</option>
+    <option value="latest_release_published_at">
+      latest_release_published_at
+    </option>
+    <option value="contributions_count">contributions_count</option>
+    <option value="created_at">created_at</option>
+  </select>
+  <button class="btn-success">submit</button>
+</form> -->
+
+{% endblock%}

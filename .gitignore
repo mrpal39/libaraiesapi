@@ -1,0 +1,75 @@
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+*.py[cod]
+*.egg*
+local.py
+.mypy_cache
+*.djcache
+
+# Temporary files
+*.swp
+*.swo
+*.tmp
+*~
+*.todo
+.vimcache
+.vscode
+.idea
+# If you are using sqlite3
+*.sqlite3
+# Name of your virtuan env
+.vEnv
+*pyc
+
+# Packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+postgres-data/
+
+# OS generated files
+.DS_Store*
+thumbs.db
+Thumbs.db
+Desktop.ini
+
+media
+staticfiles
+# Envs
+venv/
+
+dd

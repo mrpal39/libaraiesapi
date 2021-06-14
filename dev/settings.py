@@ -23,7 +23,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://lit-lake-21718.herokuapp.com/ ']
+ALLOWED_HOSTS = ['https://libraryd.herokuapp.com/']
 # Application definition
 
 INSTALLED_APPS = [

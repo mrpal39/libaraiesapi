@@ -1,21 +1,20 @@
 <nav class="navbar navbar-light bg-light">
-  <div class="modal-header m-lg-auto">
-    <ul class="nav nav-pills nav-fill">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{% url 'index' %}"
-          >home</a
+    <div class="modal-header m-lg-auto">
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'index' %}">home</a
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'search' %}">Platfrom</a>
+        <button class="btn nav-link" href="{% url 'search' %}">Platfrom</button>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'github' %}">Github</a>
+        <button class="nav-link btn-lg" href="{% url 'github' %}">Github</button>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'detail_view' %}">Library</a>
+        <button class="btn nav-link" href="{% url 'detail_view' %}">Library</button>
       </li>      <li class="nav-item">
-        <a class="nav-link" href="{% url 'github' %}">Git</a>
+        <button class=" btn nav-link" href="{% url 'github' %}">Git</button>
       </li>
       <li class="nav-item">
         <form class="d-flex" action="/search" method="get">
@@ -26,6 +25,8 @@
             placeholder="Search"
             aria-label="Search"
           />
+          <input type="hidden" name='sort' value='rank' ></input>
+
 
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>

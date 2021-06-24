@@ -1,45 +1,73 @@
 {% include 'base.html' %} {% block content %}
+<style>
+    .div {
+        text-align: center;
+    }
+</style>
 <h2>dependents</h2>
-<form action="/github" method="get">
-<input type="text" name="q" id="q">
-<button class="s" type="submit">submit</button>
+
+
+<form class="d-flex" action="" method="get">
+    <input class="form-control me-2" name="q" type="search" placeholder="Search" aria-label="Search" />
+
+    <button class="btn btn-outline-success" type="submit">Search</button>
 </form>
+<div class="row card-center"> owener:{{user.login}}
+    <span>name:{{user.name}}</span>
 
-{{dependents}}
-<!-- {% for a in dependents %}
-{{a.name}}<br>
-{% endfor %} -->
-
-
-<!-- <div class="row">
-    {{respons.full_name}}
-
-
-    {{respons.description}}
-
-    {{respons.fork}}
-    <span>date of created:{{respons.created_at}}</span>
-
-    <span> last update
-        {{respons.updated_at}}</span>
-
-    {{respons}}
-    {{respons.homepage}}
-    {{respons.size}}
-    {{respons.stargazers_count}}
-    {{respons.language}}
-    {{respons.has_issues}}
-    {{respons.default_branch}}
-    {{respons.subscribers_count}}
-
-    <h2>mia</h2>
-    <br>
-    {{respons.dependencies}}
-    {{respons.project_name}}
+    <span>name:{{user.blog}}</span><span>bio:{{user.bio}}</span>
 </div>
-<div class="row text-center col-4">
-    {% for a in project %}
-    {{a.name}}<br>
-    {% endfor %}
-</div> -->
+
+
+<div class="card-header">
+    <ul class="nav nav-tabs nav-stacked">
+        <li class="nav-item">
+            <a href="#Repository" class="nav-link active">Repository</a>
+        </li>
+
+        <li class="nav-item ">
+            <a href="#" class="nav-link">Disabled</a>
+        </li>
+    </ul>
+
+    <div class="row">
+        <div class="col-3">
+
+            <div class="card-body" id='Repository'>
+                {% for a in Repository %}
+                <h6>{{a.full_name}}</h6><br> {{a.description}}<a href="{{a.homepage}}">homepage</a><br><br>
+                <!-- {{a.keywords}}
+    {{a.size}} {{a.default_branch}} {{a.has_readme}} -->
+                {% endfor %}
+                <!-- {{Repository}} -->
+
+            </div>
+        </div>
+
+        <div class="col-3">
+            <h1>project</h1>
+            <!-- {{project}} -->
+            {% for p in project %}
+            <h6>{{p.dependent_repos_count}}</h6>{{p.name}}<br> {{p.description}}<a href="{{p.homepage}}">homepage</a><br><br> {{p.stars}} {{a.size}} {{a.default_branch}} {{a.has_readme}} {% endfor %}
+
+        </div>
+        <div class="col-3">
+            <h1>contributions</h1>
+            {{contributions}}
+            <!-- {% for p in project %}
+       <h6>{{p.dependent_repos_count}}</h6>{{p.name}}<br> {{p.description}}<a href="{{p.homepage}}">homepage</a><br><br>
+       {{p.stars}}
+  {{a.size}} {{a.default_branch}} {{a.has_readme}} 
+      {% endfor %} -->
+
+        </div>
+        <div class="col-3">
+            <h1>project_CON</h1>
+            {{proj}}
+        </div>
+    </div>
+</div>
+<script src="github.js">
+</script>
+
 {% endblock %}

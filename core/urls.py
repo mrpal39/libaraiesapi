@@ -7,13 +7,13 @@ urlpatterns = [
     path('', views.index, name='index'),
 
     # path('b/', views.blog, name='blog_b'),
-    path('detail/',views.detail_view,name='detail_view'),
+    path('detail/', views.detail_view, name='detail_view'),
 
-    path('search/', views.api_search, name='search'),
+    path('search/', views.api_search_data, name='search'),
     path('blog/', views.blog, name='blog'),
+    # path('git/', views.github_user_login, name='gitdeatil'),
 
-    path('github/', views.get_github_data, name='github'),
-    # path('search/<name>/', ArticleDetailView.as_view(), name='article-detail'),
+    path('github/', views.github_user_login, name='github'),
 
 ]
 # validate_username

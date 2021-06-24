@@ -1,67 +1,94 @@
-{% extends "base.html"%} {%block content%}
-<div class="flatpages-flatpage">
-  <center>
-    <h1>Platform</h1>
-  </center>
-</div>
-<!-- {{conme}} -->
-<div class="row">
-  {% for a in conme%}
+{% extends "base.html" %} {% load static %} {% block content %}
 
 
-  <div class="jumbotron justify-content-lg-center col-lg-3">
-    <form action="/" method="get">
+<form action="/search" method="get">
+    <h1 class="card-header" name='q' value='{{qa}}' data-catid="{{qa}}">{{qa}}</h1>
 
-      <a class="likebutton btn-lg" id="like-IS" href="/detail/?platform={{a.platform}}&name={{a.name}}" name="GG"
-        data-catid="{{ a.name }}">{{a.name}}
-      </a>
-    </form>
-    <span>{{a.platform}}</span>
+    <div class="id_100">
+        <input type="hidden" name='q' value='{{qa}}' data-catid="{{qa}}">{{qa}}</input>
 
-    <span>{{a.language}}</span>
-    <span>{{a.dependent_repos_count}} </span>
-    <mute>{{a.dependents_count}} </mute>
-    <div class=".overflow-auto">{{a.description}}</div>
+        <button class="btn " href="" type="submit" name='sort' value="rank">rank</button>
+        <button class="btn " href="" type="submit" name='sort' value="stars">stars</button>
+        <button class="btn " href="" type="submit" name='sort' value="dependents_count"> dependents_count</button>
+        <button class="btn " href="" type="submit" name='sort' value="dependent_repos_count">dependent_repos_count</button>
+        <button class="btn " href="" type="submit" name='sort' value="latest_release_published_at"> latest_release_published_at</button>
+        <button class="btn " href="" type="submit" name='sort' value="contributions_count"> contributions_count</button>
+        <button class="btn " href="" type="submit" name='sort' value="created_at"> created_at</button>
 
-    <!-- <div class="overflow-hidden"></div> -->
-    <h3>{{a.forks}}</h3>
-    <div class="group">
-      <div class=".overflow-auto">{{a.keywords}}</div>
 
-      <!-- <h5></h5> -->
     </div>
-    <button class="alert-info">
-      <a href="{{a.latest_download_url}}">Download</a>
-    </button>
-    <button class="alert-info">
-      <a href="{{a.homepage}}">Homepage</a>
-    </button>
-  </div>
-  <br />
 
-  {% endfor%}
+</form>
+<div class="row">
+    <div class="col-2"></div>
+
+    <div class="col-7">
+        <!-- {{conme}} -->
+        {% for a in conme %}
+        <div class="card ">
+            <div class="card-header">
+                <a href="/detail/?platform={{qa}}&name={{a.name}}" rel="noopener noreferrer ">{{a.name}}</a>
+
+            </div>
+            <div class="row ">
+                <!-- <h5 class="card-title ">{{a.name}}</h5> -->
+                <h6>{{a.dependent_repos_count}} &nbsp; {{a.dependents_count}}</h6>
+                <p class="card-text ">{{a.description}}</p>
+                <form action="/detail" method="get ">
+                    <input type="hidden" id='platform' name='platform' value='{{qa}}' data-catid="{{qa}}"></input>
+                    <button name="name" id="name" value="{{a.name}}" class="btn btn-primary">Go somewhere</button>
+                </form>
+                <!-- <button type="submit" class="oky">submit</button> -->
+            </div>
+        </div>
+
+        <br> {% endfor %}
+
+    </div>
+
 </div>
 
-<!-- 
-<form
-  class="form-group jumbotron"
-  id="search_form"
-  action="/search"
-  method="get"
->
-  <input type="text" name="q" id="q_value" />
-  <select class="btn btn-group-toggle" name="sort" id="short">
-    <option value="rank">rank</option>
-    <option value="stars">stars</option>
-    <option value="dependents_count">dependents_count</option>
-    <option value="dependent_repos_count">dependent_repos_count</option>
-    <option value="latest_release_published_at">
-      latest_release_published_at
-    </option>
-    <option value="contributions_count">contributions_count</option>
-    <option value="created_at">created_at</option>
-  </select>
-  <button class="btn-success">submit</button>
-</form> -->
+{% endblock %} {% block javascript %}
+<script>
+    $(document).ready(function() {
+        // alert('alert')
+        $('.oky').click(function(e) {
+            e.preventDefault();
+            id = $("#platform").attr("data-catid");
+            // short=$("div.id_100 select ").val("val2 ");
+            sort = $("#name").val();
+            // $("#offcanvasExample ").hide();
+            alert(sort)
+            alert(id)
+            $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: "/detail",
+                data: {
+                    'platform': id,
+                    'name': sort,
+                },
 
-{% endblock%}
+                success: function(response) {
+                    console.log(response.d)
+
+                }
+            });
+            //    a=$(this).val("data-catid ");
+
+
+
+
+
+
+            // .done(console.log("okay "))
+
+
+
+
+        });
+
+    });
+</script>
+{% endblock javascript %}

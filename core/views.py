@@ -1,17 +1,15 @@
 
+import json
 from django.utils.decorators import method_decorator
-from urllib.parse import unquote
-
 from django.shortcuts import redirect, render, HttpResponse
 import requests
 from requests.api import get
 from .api import api_endpoint, url_lib
 import os
 from django.http import JsonResponse
-from urllib.parse import urlencode, unquote_plus
+from urllib.parse import urlencode,unquote_plus,unquote
 from django.views import View
-from django.utils.translation import gettext
-from django.utils.http import urlquote
+from django.utils.http import urlencode ,urlunquote_plus,urlquote
 
 
 from django.views.decorators.clickjacking import (
@@ -40,8 +38,12 @@ def detail_view(request):
         nam = request.GET.get('name')
 
     # print_platform=unquote(platform)
-    name = urlquote(nam, safe="")
+    name = unquote(nam)
+    print(name)  
+    
+    
     d_platform = f"/api/{platform}/{name}"
+    print(d_platform)
     # d_version = f"/api/{platform}/{name}/{version}",
     d_dependents = f"/api/{platform}/{name}/dependents"
     # # d_repo = f"/api/{platform}/{name}/dependent_repositories"
@@ -73,28 +75,73 @@ def detail_view(request):
 
 def get_github_data(request):
     owner = ""
-    # name = ""
+    name = ""
 
     if request.method == 'GET':
 
-        owner = request.GET.get('idgit')
-    # name = request.GET.get('name')
+        owner = request.GET.get('q')
+        name = request.GET.get('q')
+    Repoown = f"/api/github/{owner}"
 
-    Repository = f"/api/github/{owner}"
-    # dependents = f"/api/github/{owner}/{name}/dependents"
-    # path = f"/api/github/{owner}/{name}/dependencies"
-    # pathprojects = f"/api/github/{owner}/{name}/projects"
-    # dependent_repositories = f"/api/github/{owner}/{name}/dependent_repositories"
-    # contributors = f"/api/github/{owner}/{name}/contributors"
-    # contributors = f"/api/github/{owner}/{name}/sourcerank"
-    print(owner)
-    a = api_endpoint.url(Repository)
-    # a_pathprojects = api_endpoint.url(Repository)
+    # Repository = f"/api/github/{owner}/repositories"
+    # projects = f"/api/github/{owner}/projects"
+    # # project_CON = f"/api/github/{owner}/project-contributions"
+    # dependencies = f"/api/github/{owner}/dependencies"
+    # repository = f"/api/github/{owner}/repository-contributions"
+    # Repositor = "/api/github/mrpal39/subscriptions"
 
+    dependents = f"/api/github/{owner}/{name}/"
+    path = f"/api/github/{owner}/{name}/dependencies"
+    pathprojects = f"/api/github/{owner}/{name}/projects"
+    dependent_repositories = f"/api/github/{owner}/{name}/dependent_repositories"
+    contributors = f"/api/github/{owner}/{name}/contributors"
+    contributors = f"/api/github/{owner}/{name}/sourcerank"
+    # print(owner)
+
+    # own= api_endpoint.url(Repoown)
+    # a = api_endpoint.url(Repository)
+    # project = api_endpoint.url(projects)
+    # project_c = api_endpoint.url(Repositor)
+    # project_d= api_endpoint.url(dependents)
     content = {
-        'dependents': a,
-        # 'Repository': a_pathprojects
-        # 'project': Repository,
+        # 'Repository': a,
+        # 'project_d': project_d,
+        # 'project': project,
+        # 'proj':project_c,
+        # 'user':own,
+
+    }
+    return render(request, "github.html", content)
+
+
+def github_user_login(request):
+    owner = ""
+    name = ""
+
+    if request.method == 'GET':
+
+        owner = request.GET.get('q')
+        # name = request.GET.get('q')
+
+    # Repository =
+    # projects =
+    # # project_CON =
+    # dependencies = f"/api/github/{owner}/dependencies"
+    # repository = f"/api/github/{owner}/repository-contributions"
+    # Repositor =
+
+    own = api_endpoint.url(f"/api/github/{owner}")
+    Repository = api_endpoint.url(f"/api/github/{owner}/repositories")
+    project = api_endpoint.url(f"/api/github/{owner}/projects")
+    contributions = api_endpoint.url(
+        f"/api/github/{owner}/project-contributions")
+    # project_d= api_endpoint.url(repository)
+    content = {
+        'Repository': Repository,
+        # 'project_d': project,
+        'project': project,
+        'contributions': contributions,
+        'user': own,
 
     }
     return render(request, "github.html", content)
@@ -134,32 +181,53 @@ def index(request):
 # search baar and search url
 
 @xframe_options_sameorigin
-def api_search(request):
-    qa = ""
+# def api_search(request):
 
-    sort = ""
-    if request.method == 'GET':
-        # if response.get('X-Frame-Options') is not None:
-
-        sort = request.GET.get('sort')
-        qa = request.GET.get('q')
-
-    # else:
-    #     qa = "npm"
-    # print(qa)
+    # qa = ""
+    # sort = ""
+    # if request.method =="GET":           
+    #     qa = request.GET.get('qa')
+    #     sort = request.GET.get('sort')
+        
+ 
+    # print(qa)  
     # print(sort)
+    # path = '/api/search'
+    # payload = {
+    #     'platform': qa,
+    #     'sort': sort,
+    #     'api_key': api_key,
+    # }
+    # query = urlencode(payload)
+    # dat = api_endpoint.base_url(path, query)
+    # # print(dat)
+    # response = {
+    #     'qa': qa,
+    #     'conme': dat,
+    # }
+    # # return JsonResponse(response)
+    # return render(request, 'search.html', response)
 
+
+def api_search_data(request):
+    qa = {}
+    sort = ""
+    qa = request.GET.get('q')
+    sort = request.GET.get('sort')
+ 
     path = '/api/search'
     payload = {
         'q': qa,
         'sort': sort,
+        
         'api_key': api_key,
     }
     query = urlencode(payload)
     dat = api_endpoint.base_url(path, query)
+    # print(dat)
     response = {
+        'qa': qa,
         'conme': dat,
     }
-    # print ('da')
-
+  
     return render(request, 'search.html', response)
